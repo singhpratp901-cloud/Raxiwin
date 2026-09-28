@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>RAXI WIN - Official App</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    color:#fff;
+    background:#050505;
+    overflow-x:hidden;
+}
+a{text-decoration:none;color:inherit}
+
+:root{
+    --red:#c40000;
+    --red2:#ff2600;
+    --gold:#ffd84a;
+    --gold2:#ff9800;
+    --dark:#050505;
+}
+
+/* BACKGROUND */
+body:before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-2;
+    background:
+      radial-gradient(circle at 50% 10%,rgba(170,0,0,.42),transparent 30%),
+      radial-gradient(circle at 10% 60%,rgba(110,0,0,.20),transparent 30%),
+      radial-gradient(circle at 90% 70%,rgba(255,70,0,.12),transparent 30%),
+      #050505;
+}
+body:after{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    opacity:.12;
+    background-image:
+      radial-gradient(#fff 1px,transparent 1px);
+    background-size:45px 45px;
+}
+
+/* HEADER */
+header{
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index:999;
+    background:rgba(0,0,0,.88);
+    border-bottom:1px solid rgba(255,190,30,.25);
+    backdrop-filter:blur(12px);
+}
+.nav{
+    max-width:1200px;
+    margin:auto;
+    height:76px;
+    padding:8px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+.brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:900;
+    font-size:22px;
+    color:#ffd95b;
+}
+.brand svg{
+    width:55px;
+    height:55px;
+}
+.menu{
+    display:flex;
+    gap:28px;
+    align-items:center;
+}
+.menu a{
+    font-size:14px;
+    color:#ddd;
+    font-weight:bold;
+}
+.menu a:hover{color:#ffd34a}
+.download-small{
+    background:linear-gradient(135deg,#ffe56b,#ff7b00,#e60000);
+    color:#160600!important;
+    padding:11px 20px;
+    border-radius:30px;
+}
+.hamburger{
+    display:none;
+    font-size:28px;
+    cursor:pointer;
+}
+
+/* HERO */
+.hero{
+    min-height:100vh;
+    padding:130px 20px 70px;
+    display:flex;
+    align-items:center;
+    position:relative;
+}
+.hero-inner{
+    width:1150px;
+    max-width:100%;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    align-items:center;
+    gap:50px;
+}
+.badge{
+    display:inline-block;
+    border:1px solid rgba(255,210,70,.55);
+    background:rgba(255,160,0,.08);
+    color:#ffd84a;
+    padding:7px 15px;
+    border-radius:30px;
+    font-size:12px;
+    font-weight:bold;
+    letter-spacing:1px;
+}
+.hero h1{
+    margin-top:20px;
+    font-size:clamp(55px,8vw,100px);
+    line-height:.9;
+    font-weight:1000;
+    letter-spacing:-5px;
+    background:linear-gradient(
+        #fff3a0 0%,
+        #ffd52f 28%,
+        #ff7a00 60%,
+        #bd1000 100%
+    );
+    -webkit-background-clip:text;
+    color:transparent;
+    filter:drop-shadow(0 12px 25px rgba(255,40,0,.3));
+}
+.hero h2{
+    margin-top:20px;
+    font-size:27px;
+}
+.hero p{
+    margin-top:15px;
+    max-width:570px;
+    color:#aaa;
+    font-size:17px;
+}
+.buttons{
+    margin-top:30px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+}
+.btn{
+    padding:15px 27px;
+    border-radius:8px;
+    font-weight:900;
+    display:inline-block;
+    transition:.25s;
+}
+.btn:hover{transform:translateY(-3px)}
+.btn-main{
+    background:linear-gradient(135deg,#fff078,#ffae00,#ff2600);
+    color:#170700;
+    box-shadow:0 12px 35px rgba(255,70,0,.25);
+}
+.btn-outline{
+    border:1px solid #a86b00;
+    color:#ffd84a;
+}
+
+/* LOGO */
+.logo-holder{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.logo-circle{
+    width:min(470px,90vw);
+    aspect-ratio:1;
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:50%;
+    padding:13px;
+    background:
+      linear-gradient(#070707,#070707) padding-box,
+      linear-gradient(135deg,#fff1a0,#ffae00,#850000,#ffce38) border-box;
+    border:6px solid transparent;
+    box-shadow:
+      0 0 35px rgba(255,50,0,.35),
+      0 0 100px rgba(180,0,0,.2),
+      inset 0 0 40px rgba(255,100,0,.12);
+    animation:pulse 3s infinite alternate;
+}
+.logo-circle svg{
+    width:100%;
+    height:100%;
+}
+@keyframes pulse{
+    from{transform:scale(1);filter:brightness(.95)}
+    to{transform:scale(1.025);filter:brightness(1.12)}
+}
+
+/* COMMON */
+section{padding:80px 20px}
+.container{
+    max-width:1100px;
+    margin:auto;
+}
+.title{
+    text-align:center;
+    margin-bottom:45px;
+}
+.title span{
+    color:#ffd54a;
+    font-size:12px;
+    letter-spacing:2px;
+    font-weight:900;
+}
+.title h2{
+    margin-top:7px;
+    font-size:clamp(30px,5vw,46px);
+}
+.title p{
+    color:#999;
+    max-width:650px;
+    margin:10px auto;
+}
+
+/* FEATURES */
+.features{
+    background:rgba(255,255,255,.018);
+    border-top:1px solid rgba(255,200,50,.07);
+    border-bottom:1px solid rgba(255,200,50,.07);
+}
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+.card{
+    background:linear-gradient(
+        145deg,
+        rgba(255,255,255,.065),
+        rgba(255,255,255,.012)
+    );
+    border:1px solid rgba(255,190,30,.12);
+    border-radius:17px;
+    padding:28px;
+    transition:.3s;
+}
+.card:hover{
+    transform:translateY(-7px);
+    border-color:rgba(255,190,30,.45);
+    box-shadow:0 15px 40px rgba(0,0,0,.4);
+}
+.icon{
+    width:54px;
+    height:54px;
+    border-radius:14px;
+    display:grid;
+    place-items:center;
+    background:linear-gradient(135deg,#ffe052,#ff3b00);
+    color:#180700;
+    font-size:25px;
+    margin-bottom:18px;
+}
+.card h3{
+    color:#ffe88b;
+    margin-bottom:8px;
+}
+.card p{
+    color:#999;
+    font-size:14px;
+}
+
+/* STEPS */
+.steps{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+.step{
+    text-align:center;
+    padding:15px;
+}
+.number{
+    width:60px;
+    height:60px;
+    margin:0 auto 17px;
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    font-size:21px;
+    font-weight:900;
+    color:#180700;
+    background:linear-gradient(135deg,#ffe34d,#ff4000);
+}
+.step h3{margin-bottom:8px}
+.step p{
+    color:#999;
+    font-size:14px;
+}
+
+/* SHOWCASE */
+.showcase{
+    background:
+      radial-gradient(circle at 50% 50%,rgba(150,0,0,.22),transparent 60%);
+}
+.showcase-box{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    align-items:center;
+    gap:50px;
+    padding:40px;
+    border-radius:22px;
+    border:1px solid rgba(255,190,30,.13);
+    background:rgba(0,0,0,.3);
+}
+.showcase h2{
+    font-size:40px;
+    margin:15px 0;
+}
+.showcase p{color:#aaa}
+.showcase ul{
+    list-style:none;
+    margin:20px 0;
+}
+.showcase li{
+    color:#ddd;
+    margin:9px 0;
+}
+.showcase li:before{
+    content:"✓";
+    color:#ffd43b;
+    font-weight:900;
+    margin-right:10px;
+}
+.phone{
+    width:235px;
+    height:455px;
+    margin:auto;
+    border:8px solid #252525;
+    border-radius:35px;
+    background:
+      radial-gradient(circle at 50% 30%,#800000,#180000 55%,#030303);
+    box-shadow:0 25px 60px rgba(0,0,0,.6);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:20px;
+}
+.phone svg{width:155px}
+.phone-name{
+    color:#ffd447;
+    font-size:25px;
+    font-weight:900;
+    margin-top:15px;
+}
+
+/* TABLE */
+.table-wrap{
+    overflow-x:auto;
+    border-radius:15px;
+    border:1px solid rgba(255,190,30,.12);
+}
+table{
+    width:100%;
+    min-width:600px;
+    border-collapse:collapse;
+    background:rgba(0,0,0,.3);
+}
+th,td{
+    padding:16px 20px;
+    border-bottom:1px solid rgba(255,255,255,.06);
+    text-align:left;
+}
+th{
+    color:#ffd84a;
+    background:rgba(255,170,0,.07);
+}
+td{color:#bbb}
+
+/* FAQ */
+.faq{
+    max-width:800px;
+    margin:auto;
+}
+details{
+    margin-bottom:12px;
+    padding:18px 20px;
+    background:rgba(255,255,255,.035);
+    border:1px solid rgba(255,190,30,.12);
+    border-radius:10px;
+}
+summary{
+    cursor:pointer;
+    color:#ffe68b;
+    font-weight:bold;
+}
+details p{
+    padding-top:13px;
+    color:#999;
+    font-size:14px;
+}
+
+/* CTA */
+.cta{
+    text-align:center;
+    background:
+      radial-gradient(circle,#690000 0%,#190000 42%,#050505 80%);
+}
+.cta-logo{
+    width:120px;
+    height:120px;
+    margin:auto;
+}
+.cta h2{
+    font-size:50px;
+    color:#ffe06a;
+    margin-top:10px;
+}
+.cta p{
+    color:#aaa;
+    max-width:650px;
+    margin:10px auto 25px;
+}
+
+/* FOOTER */
+footer{
+    padding:50px 20px 25px;
+    background:#020202;
+}
+.footer{
+    max-width:1100px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1.5fr 1fr 1fr 1fr;
+    gap:40px;
+}
+footer h3{
+    color:#ffd448;
+    margin-bottom:15px;
+}
+footer p,footer a{
+    color:#777;
+    font-size:14px;
+}
+footer a{
+    display:block;
+    margin:8px 0;
+}
+footer a:hover{color:#ffd448}
+.copy{
+    max-width:1100px;
+    margin:35px auto 0;
+    padding-top:20px;
+    border-top:1px solid #151515;
+    color:#555;
+    text-align:center;
+    font-size:12px;
+}
+
+/* MOBILE */
+@media(max-width:850px){
+    .menu{
+        display:none;
+        position:absolute;
+        top:76px;
+        left:0;
+        width:100%;
+        background:#080808;
+        padding:20px;
+        flex-direction:column;
+        border-bottom:1px solid #4b2500;
+    }
+    .menu.active{display:flex}
+    .hamburger{display:block}
+
+    .hero-inner{
+        grid-template-columns:1fr;
+        text-align:center;
+    }
+    .hero p{margin-left:auto;margin-right:auto}
+    .buttons{justify-content:center}
+
+    .grid{grid-template-columns:1fr 1fr}
+    .steps{grid-template-columns:1fr 1fr}
+
+    .showcase-box{
+        grid-template-columns:1fr;
+    }
+
+    .footer{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:550px){
+    .brand{font-size:18px}
+    .brand svg{width:45px;height:45px}
+
+    .hero{padding-top:115px}
+    .hero h1{font-size:65px}
+
+    .grid,
+    .steps,
+    .footer{
+        grid-template-columns:1fr;
+    }
+
+    .showcase-box{padding:22px}
+    .showcase h2{font-size:31px}
+
+    .phone{
+        width:205px;
+        height:390px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =====================================================
+     RAXI WIN LOGO - FULLY EMBEDDED SVG
+     ===================================================== -->
+
+<svg id="rLogo" style="display:none"
+     viewBox="0 0 600 600"
+     xmlns="http://www.w3.org/2000/svg">
+
+    <defs>
+
+        <radialGradient id="bg">
+            <stop offset="0" stop-color="#242424"/>
+            <stop offset=".7" stop-color="#090909"/>
+            <stop offset="1" stop-color="#020202"/>
+        </radialGradient>
+
+        <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#fff6a0"/>
+            <stop offset=".25" stop-color="#ffd42e"/>
+            <stop offset=".6" stop-color="#ff9b00"/>
+            <stop offset="1" stop-color="#b74700"/>
+        </linearGradient>
+
+        <linearGradient id="redgold" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#fff07b"/>
+            <stop offset=".25" stop-color="#ffb400"/>
+            <stop offset=".55" stop-color="#ff3000"/>
+            <stop offset="1" stop-color="#8c0000"/>
+        </linearGradient>
+
+        <filter id="glow">
+            <feGaussianBlur stdDeviation="5"/>
+        </filter>
+    </defs>
+
+    <!-- BACKGROUND -->
+    <circle cx="300" cy="300" r="280"
+            fill="url(#bg)"
+            stroke="#ffbd27"
+            stroke-width="8"/>
+
+    <circle cx="300" cy="300" r="258"
+            fill="none"
+            stroke="#8e0000"
+            stroke-width="15"/>
+
+    <circle cx="300" cy="300" r="235"
+            fill="none"
+            stroke="#ffb31b"
+            stroke-width="3"/>
+
+    <!-- CROWN GLOW -->
+    <path
+      d="M175 205 L155 110 L225 160 L300 75 L375 160 L445 110 L425 205 Z"
+      fill="#ff9e00"
+      opacity=".3"
+      filter="url(#glow)"/>
+
+    <!-- CROWN -->
+    <path
+      d="M170 205
+         L150 105
+         L225 160
+         L300 62
+         L375 160
+         L450 105
+         L430 205
+         Q300 275 170 205Z"
+      fill="url(#gold)"
+      stroke="#ffdc54"
+      stroke-width="5"/>
+
+    <!-- CROWN LOWER -->
+    <path
+      d="M168 198
+         Q300 258 432 198
+         L420 230
+         Q300 292 180 230Z"
+      fill="#a94600"
+      stroke="#ffd64a"
+      stroke-width="4"/>
+
+    <!-- CROWN JEWELS -->
+    <circle cx="300" cy="225" r="10" fill="#fff"/>
+    <circle cx="220" cy="205" r="7" fill="#fff"/>
+    <circle cx="380" cy="205" r="7" fill="#fff"/>
+
+    <polygon points="300,117 322,145 300,170 278,145"
+             fill="#e71919"
+             stroke="#ffd84b"
+             stroke-width="4"/>
+
+    <!-- BIG RAXI -->
+    <text x="300" y="385"
+          text-anchor="middle"
+          font-family="Arial Black,Arial"
+          font-size="145"
+          font-weight="900"
+          font-style="italic"
+          fill="url(#redgold)"
+          stroke="#ffde61"
+          stroke-width="4"
+          paint-order="stroke">
+        RAXI
+    </text>
+
+    <!-- CROSS SLASH -->
+    <path d="M120 400 L470 225"
+          stroke="#ffd847"
+          stroke-width="17"
+          opacity=".9"/>
+
+    <path d="M120 400 L470 225"
+          stroke="#ff4a00"
+          stroke-width="8"/>
+
+    <!-- WIN -->
+    <text x="300" y="485"
+          text-anchor="middle"
+          font-family="Arial Black,Arial"
+          font-size="58"
+          font-weight="900"
+          letter-spacing="12"
+          fill="url(#gold)">
+        WIN
+    </text>
+
+    <!-- BOTTOM JEWEL -->
+    <polygon points="300,505 335,545 300,575 265,545"
+             fill="url(#redgold)"
+             stroke="#ffd84a"
+             stroke-width="5"/>
+</svg>
+
+
+<!-- HEADER -->
+<header>
+    <nav class="nav">
+
+        <a class="brand" href="#home">
+            <svg viewBox="0 0 600 600">
+                <use href="#rLogo"/>
+            </svg>
+            RAXI WIN
+        </a>
+
+        <div class="hamburger" onclick="openMenu()">☰</div>
+
+        <div class="menu" id="menu">
+            <a href="#home">Home</a>
+            <a href="#features">Features</a>
+            <a href="#download">Download</a>
+            <a href="#games">Games</a>
+            <a href="#faq">FAQ</a>
+            <a class="download-small" href="#download">Download App</a>
+        </div>
+
+    </nav>
+</header>
+
+
+<!-- HERO -->
+<section class="hero" id="home">
+
+    <div class="hero-inner">
+
+        <div>
+
+            <span class="badge">
+                RAXI WIN OFFICIAL APP
+            </span>
+
+            <h1>RAXI WIN</h1>
+
+            <h2>Next Generation Mobile Experience</h2>
+
+            <p>
+                Experience a modern, responsive and fast
+                RAXI WIN interface designed especially
+                for mobile users.
+            </p>
+
+            <div class="buttons">
+
+                <!-- APNA DOWNLOAD URL YAHAN DAAL SAKTE HO -->
+                <a href="#download" class="btn btn-main">
+                    ↓ DOWNLOAD APP
+                </a>
+
+                <a href="#features" class="btn btn-outline">
+                    EXPLORE
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="logo-holder">
+
+            <div class="logo-circle">
+
+                <svg viewBox="0 0 600 600">
+                    <use href="#rLogo"/>
+                </svg>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FEATURES -->
+<section class="features" id="features">
+
+    <div class="container">
+
+        <div class="title">
+            <span>WHY RAXI WIN</span>
+            <h2>Everything In One Place</h2>
+            <p>
+                A modern interface created for a simple
+                and smooth mobile experience.
+            </p>
+        </div>
+
+
+        <div class="grid">
+
+            <div class="card">
+                <div class="icon">⚡</div>
+                <h3>Fast Experience</h3>
+                <p>
+                    Fast and lightweight interface
+                    designed for mobile devices.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="icon">📱</div>
+                <h3>Mobile Friendly</h3>
+                <p>
+                    Responsive layout that automatically
+                    adapts to every screen size.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🔒</div>
+                <h3>Secure Interface</h3>
+                <p>
+                    Modern design with a clean,
+                    security-focused user experience.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🎮</div>
+                <h3>Multiple Games</h3>
+                <p>
+                    Organize multiple entertainment
+                    categories in one interface.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🎁</div>
+                <h3>Special Offers</h3>
+                <p>
+                    Highlight promotions and important
+                    updates for your visitors.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🌐</div>
+                <h3>Easy Navigation</h3>
+                <p>
+                    Simple navigation helps users quickly
+                    find the section they need.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- DOWNLOAD STEPS -->
+<section id="download">
+
+    <div class="container">
+
+        <div class="title">
+            <span>GET STARTED</span>
+            <h2>Download RAXI WIN</h2>
+            <p>
+                Get started in a few simple steps.
+            </p>
+        </div>
+
+
+        <div class="steps">
+
+            <div class="step">
+                <div class="number">1</div>
+                <h3>Visit Website</h3>
+                <p>
+                    Open the RAXI WIN website.
+                </p>
+            </div>
+
+            <div class="step">
+                <div class="number">2</div>
+                <h3>Tap Download</h3>
+                <p>
+                    Click the download button.
+                </p>
+            </div>
+
+            <div class="step">
+                <div class="number">3</div>
+                <h3>Install</h3>
+                <p>
+                    Install the application on your device.
+                </p>
+            </div>
+
+            <div class="step">
+                <div class="number">4</div>
+                <h3>Open App</h3>
+                <p>
+                    Open RAXI WIN and continue.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div style="text-align:center;margin-top:35px">
+
+            <!-- DOWNLOAD LINK -->
+            <a href="#" class="btn btn-main">
+                ↓ DOWNLOAD RAXI WIN
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- APP SHOWCASE -->
+<section class="showcase" id="games">
+
+    <div class="container">
+
+        <div class="showcase-box">
+
+            <div>
+
+                <span class="badge">RAXI WIN APP</span>
+
+                <h2>Made For Mobile</h2>
+
+                <p>
+                    Enjoy a clean and responsive interface
+                    that works smoothly across mobile,
+                    tablet and desktop devices.
+                </p>
+
+                <ul>
+                    <li>Responsive mobile interface</li>
+                    <li>Modern red and gold design</li>
+                    <li>Simple navigation</li>
+                    <li>Fast loading layout</li>
+                    <li>Easy access to categories</li>
+                </ul>
+
+                <a href="#download" class="btn btn-main">
+                    DOWNLOAD NOW
+                </a>
+
+            </div>
+
+
+            <div>
+
+                <div class="phone">
+
+                    <div>
+
+                        <svg viewBox="0 0 600 600">
+                            <use href="#rLogo"/>
+                        </svg>
+
+                        <div class="phone-name">
+                            RAXI WIN
+                        </div>
+
+                        <div style="color:#888;margin-top:5px">
+                            Mobile Experience
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- COMPARISON -->
+<section>
+
+    <div class="container">
+
+        <div class="title">
+            <span>EXPERIENCE</span>
+            <h2>Mobile & Desktop</h2>
+        </div>
+
+        <div class="table-wrap">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Desktop</th>
+                        <th>Mobile</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Responsive Design</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                    </tr>
+
+                    <tr>
+                        <td>Easy Navigation</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                    </tr>
+
+                    <tr>
+                        <td>Mobile Interface</td>
+                        <td>Standard</td>
+                        <td>Optimized</td>
+                    </tr>
+
+                    <tr>
+                        <td>Fast Layout</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- REVIEWS -->
+<section class="features">
+
+    <div class="container">
+
+        <div class="title">
+            <span>USER EXPERIENCE</span>
+            <h2>What Users Say</h2>
+        </div>
+
+        <div class="grid">
+
+            <div class="card">
+                <p>
+                    "The mobile interface is simple and
+                    easy to navigate."
+                </p>
+                <h3 style="margin-top:15px">
+                    — Mobile User
+                </h3>
+            </div>
+
+            <div class="card">
+                <p>
+                    "The red and gold design looks great
+                    on my phone."
+                </p>
+                <h3 style="margin-top:15px">
+                    — App User
+                </h3>
+            </div>
+
+            <div class="card">
+                <p>
+                    "Everything is easy to find from
+                    the main page."
+                </p>
+                <h3 style="margin-top:15px">
+                    — Website Visitor
+                </h3>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FAQ -->
+<section id="faq">
+
+    <div class="container">
+
+        <div class="title">
+            <span>HELP CENTER</span>
+            <h2>Frequently Asked Questions</h2>
+        </div>
+
+        <div class="faq">
+
+            <details>
+                <summary>
+                    How can I download RAXI WIN?
+                </summary>
+                <p>
+                    Use the Download App button on this page.
+                    Replace its link with your official
+                    application download URL.
+                </p>
+            </details>
+
+            <details>
+                <summary>
+                    Is this page mobile responsive?
+                </summary>
+                <p>
+                    Yes. The page automatically adjusts
+                    itself for mobile, tablet and desktop.
+                </p>
+            </details>
+
+            <details>
+                <summary>
+                    Can I change the download link?
+                </summary>
+                <p>
+                    Yes. Search this HTML for
+                    href="#download" and replace the
+                    relevant button links with your URL.
+                </p>
+            </details>
+
+            <details>
+                <summary>
+                    Does it need an external image?
+                </summary>
+                <p>
+                    No. The RAXI WIN logo is embedded
+                    directly inside this HTML as SVG.
+                </p>
+            </details>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CTA -->
+<section class="cta">
+
+    <div class="cta-logo">
+
+        <svg viewBox="0 0 600 600">
+            <use href="#rLogo"/>
+        </svg>
+
+    </div>
+
+    <h2>RAXI WIN</h2>
+
+    <p>
+        A modern mobile-first experience with
+        a powerful red and gold interface.
+    </p>
+
+    <a href="#download" class="btn btn-main">
+        DOWNLOAD NOW
+    </a>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <div class="footer">
+
+        <div>
+            <h3>RAXI WIN</h3>
+            <p>
+                Modern responsive landing page designed
+                for RAXI WIN mobile users.
+            </p>
+        </div>
+
+        <div>
+            <h3>Navigation</h3>
+            <a href="#home">Home</a>
+            <a href="#features">Features</a>
+            <a href="#download">Download</a>
+            <a href="#games">Games</a>
+        </div>
+
+        <div>
+            <h3>Information</h3>
+            <a href="#">About</a>
+            <a href="#">Promotions</a>
+            <a href="#">Terms</a>
+            <a href="#">Privacy</a>
+        </div>
+
+        <div>
+            <h3>Support</h3>
+            <a href="#faq">FAQ</a>
+            <a href="#">Contact</a>
+            <a href="#">Help Center</a>
+        </div>
+
+    </div>
+
+    <div class="copy">
+        © 2026 RAXI WIN. All Rights Reserved.
+        <br><br>
+        18+ | Gambling involves financial risk. Please play responsibly.
+    </div>
+
+</footer>
+
+
+<script>
+function openMenu(){
+    document.getElementById("menu").classList.toggle("active");
+}
+
+document.querySelectorAll(".menu a").forEach(function(link){
+    link.addEventListener("click",function(){
+        document.getElementById("menu").classList.remove("active");
+    });
+});
+</script>
+
+</body>
+</html>
